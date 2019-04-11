@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/kb?useSSL=false&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PRC&autoReconnect=true
+    username: root
+    password: a949812478
+    initialSize: 10
+    minIdle: 10
+    maxActive: 100
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 200   #PreparedStatement缓存大小
+    filters: stat,wall          #stat:web监控   wall：sql防火墙
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    useGlobalDataSourceStat: true
+    loginUsername: root    #druid控制页面登陆用户名
+    loginPassword: zv9VJP   #druid控制页面登陆密码
+    test-while-idle: true  #申请连接的时候检测，如果空闲时间大于 timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+    check-template: true
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
